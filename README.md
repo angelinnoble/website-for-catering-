@@ -61,16 +61,7 @@ St-Marys-Catering/
 - Outdoor Catering
 - Live Food Counters
 
-## 📞 Contact Information
 
-**St. Mary's Caterers & Events**
-
-📍 Kottayam, Kerala, India
-
-📱 Phone: +91 9876543210
-
-💬 WhatsApp:
-https://wa.me/919876543210
 
 ## 🚀 How to Run
 
