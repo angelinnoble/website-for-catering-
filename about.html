@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | St. Mary's Catering</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --black:#000;
+    --dark:#0d0d0d;
+    --white:#fff;
+    --light:#f8f8f8;
+    --gray:#d9d9d9;
+    --text:#222;
+    --muted:#777;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Outfit',sans-serif;
+    background:#fff;
+    color:var(--text);
+    overflow-x:hidden;
+}
+
+/* ====================
+   NAVBAR
+==================== */
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:85px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 8%;
+    background:rgba(0,0,0,.95);
+    backdrop-filter:blur(15px);
+    z-index:1000;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo h1{
+    font-family:'Cormorant Garamond',serif;
+    color:#fff;
+    font-size:2rem;
+    letter-spacing:2px;
+}
+
+.logo p{
+    color:rgba(255,255,255,.6);
+    font-size:.7rem;
+    letter-spacing:4px;
+}
+
+.nav-menu{
+    display:flex;
+    gap:35px;
+    list-style:none;
+}
+
+.nav-menu a{
+    color:rgba(255,255,255,.75);
+    text-decoration:none;
+    font-size:.85rem;
+    letter-spacing:2px;
+    transition:.3s;
+    text-transform:uppercase;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active{
+    color:#fff;
+}
+
+/* ====================
+   HERO
+==================== */
+
+.hero{
+    height:100vh;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    position:relative;
+}
+
+.hero::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+    radial-gradient(circle at 25% 30%, rgba(255,255,255,.08), transparent 50%),
+    radial-gradient(circle at 75% 70%, rgba(255,255,255,.04), transparent 50%);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+}
+
+.hero-subtitle{
+    color:#ccc;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    margin-bottom:20px;
+    font-size:.8rem;
+}
+
+.hero h1{
+    color:#fff;
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(4rem,8vw,7rem);
+    font-weight:300;
+}
+
+.hero p{
+    color:rgba(255,255,255,.7);
+    margin-top:20px;
+    font-size:1rem;
+}
+
+/* ====================
+   GENERAL
+==================== */
+
+section{
+    padding:100px 8%;
+}
+
+.section-tag{
+    letter-spacing:4px;
+    text-transform:uppercase;
+    font-size:.75rem;
+    margin-bottom:10px;
+    color:#777;
+}
+
+.section-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:3rem;
+    margin-bottom:25px;
+}
+
+.line{
+    width:70px;
+    height:2px;
+    background:#000;
+    margin-bottom:50px;
+}
+
+/* ====================
+   VISION MISSION
+==================== */
+
+.dark-section{
+    background:#000;
+    color:#fff;
+}
+
+.dark-section .section-title{
+    color:#fff;
+}
+
+.dark-section .line{
+    background:#fff;
+}
+
+.vm-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:40px;
+}
+
+.vm-card{
+    border:1px solid rgba(255,255,255,.15);
+    padding:40px;
+    transition:.4s;
+}
+
+.vm-card:hover{
+    transform:translateY(-10px);
+    border-color:#fff;
+}
+
+.vm-card h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:2rem;
+    margin-bottom:20px;
+}
+
+.vm-card p{
+    color:rgba(255,255,255,.75);
+    line-height:1.9;
+}
+
+/* ====================
+   INFRASTRUCTURE
+==================== */
+
+.card-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+}
+
+.card{
+    border:1px solid #e5e5e5;
+    padding:40px;
+    transition:.4s;
+    background:#fff;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 20px 60px rgba(0,0,0,.08);
+}
+
+.number{
+    font-size:4rem;
+    font-family:'Cormorant Garamond',serif;
+    color:#ddd;
+}
+
+.card h3{
+    margin:15px 0;
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.6rem;
+}
+
+.card p{
+    color:#666;
+    line-height:1.8;
+}
+
+/* ====================
+   QUALITY
+==================== */
+
+.quality{
+    background:#000;
+    color:#fff;
+}
+
+.quality-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+}
+
+.quality-card{
+    border:1px solid rgba(255,255,255,.1);
+    padding:40px;
+}
+
+.quality-card h3{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.8rem;
+    margin-bottom:15px;
+}
+
+.quality-card p{
+    color:rgba(255,255,255,.75);
+    line-height:1.8;
+}
+
+/* ====================
+   PROCESS
+==================== */
+
+.process-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+}
+
+.process-card{
+    border:1px solid #eee;
+    padding:35px;
+    transition:.4s;
+}
+
+.process-card:hover{
+    transform:translateY(-8px);
+}
+
+.process-card h3{
+    font-family:'Cormorant Garamond',serif;
+    margin:15px 0;
+    font-size:1.5rem;
+}
+
+.process-card p{
+    color:#666;
+    line-height:1.8;
+}
+
+/* ====================
+   CTA
+==================== */
+
+.cta{
+    background:#000;
+    text-align:center;
+    color:#fff;
+}
+
+.cta h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:3rem;
+    margin-bottom:20px;
+}
+
+.cta p{
+    max-width:700px;
+    margin:auto;
+    color:rgba(255,255,255,.7);
+}
+
+.btn{
+    display:inline-block;
+    margin-top:35px;
+    padding:14px 40px;
+    background:#fff;
+    color:#000;
+    text-decoration:none;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    font-size:.8rem;
+    transition:.3s;
+}
+
+.btn:hover{
+    background:#ddd;
+}
+
+/* ====================
+   FOOTER
+==================== */
+
+footer{
+    background:#050505;
+    color:#fff;
+    padding:70px 8% 25px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:50px;
+}
+
+footer h4{
+    margin-bottom:20px;
+}
+
+footer p,
+footer a{
+    color:rgba(255,255,255,.6);
+    line-height:2;
+    text-decoration:none;
+}
+
+.bottom{
+    margin-top:40px;
+    padding-top:20px;
+    border-top:1px solid rgba(255,255,255,.08);
+    text-align:center;
+    color:rgba(255,255,255,.4);
+}
+
+/* ====================
+   MOBILE
+==================== */
+
+@media(max-width:900px){
+
+.vm-grid,
+.card-grid,
+.quality-grid,
+.process-grid,
+.footer-grid{
+grid-template-columns:1fr;
+}
+
+.navbar{
+flex-direction:column;
+height:auto;
+padding:20px;
+}
+
+.nav-menu{
+flex-wrap:wrap;
+justify-content:center;
+margin-top:15px;
+}
+
+.hero h1{
+font-size:4rem;
+}
+
+}
+
+</style>
+
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <h1>ST. MARY'S</h1>
+        <p>CATERERS & EVENTS</p>
+    </div>
+
+```
+<ul class="nav-menu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="menu.html">Menu</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="contact.html">Contact</a></li>
+</ul>
+```
+
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-subtitle">Luxury Catering Since 2005</div>
+        <h1>The Art of Celebration</h1>
+        <p>Crafting unforgettable dining experiences with elegance, passion and excellence.</p>
+    </div>
+</section>
+
+<section>
+    <div class="section-tag">About Us</div>
+    <h2 class="section-title">Our Story</h2>
+    <div class="line"></div>
+
+```
+<p style="max-width:900px;line-height:2;color:#666;">
+    St. Mary's Catering has built a reputation for delivering exceptional culinary experiences across South India. Every event is thoughtfully planned, every menu carefully crafted, and every guest served with warmth and professionalism.
+</p>
+```
+
+</section>
+
+<section class="dark-section">
+    <div class="section-tag">Who We Are</div>
+    <h2 class="section-title">Vision & Mission</h2>
+    <div class="line"></div>
+
+```
+<div class="vm-grid">
+    <div class="vm-card">
+        <h3>Our Vision</h3>
+        <p>To become South India's most admired catering company known for excellence, innovation and hospitality.</p>
+    </div>
+
+    <div class="vm-card">
+        <h3>Our Mission</h3>
+        <p>Deliver premium catering experiences through quality ingredients, impeccable service and memorable presentation.</p>
+    </div>
+</div>
+```
+
+</section>
+
+<section>
+    <div class="section-tag">Capabilities</div>
+    <h2 class="section-title">Infrastructure</h2>
+    <div class="line"></div>
+
+```
+<div class="card-grid">
+
+    <div class="card">
+        <div class="number">01</div>
+        <h3>Modern Kitchens</h3>
+        <p>State-of-the-art kitchens equipped with advanced technology and strict hygiene standards.</p>
+    </div>
+
+    <div class="card">
+        <div class="number">02</div>
+        <h3>Logistics</h3>
+        <p>Reliable transportation systems ensuring freshness and timely delivery.</p>
+    </div>
+
+    <div class="card">
+        <div class="number">03</div>
+        <h3>Sustainability</h3>
+        <p>Eco-friendly operations with responsible sourcing and waste management.</p>
+    </div>
+
+</div>
+```
+
+</section>
+
+<section class="quality">
+    <div class="section-tag">Quality Assurance</div>
+    <h2 class="section-title">Hygiene & Safety</h2>
+    <div class="line"></div>
+
+```
+<div class="quality-grid">
+
+    <div class="quality-card">
+        <h3>Hygiene First</h3>
+        <p>Strict food handling procedures and regular staff training ensure safe preparation.</p>
+    </div>
+
+    <div class="quality-card">
+        <h3>Fresh Ingredients</h3>
+        <p>Only premium quality ingredients sourced from trusted suppliers.</p>
+    </div>
+
+    <div class="quality-card">
+        <h3>Quality Control</h3>
+        <p>Every dish undergoes detailed inspection before reaching your guests.</p>
+    </div>
+
+</div>
+```
+
+</section>
+
+<section>
+    <div class="section-tag">Our Process</div>
+    <h2 class="section-title">Service Excellence</h2>
+    <div class="line"></div>
+
+```
+<div class="process-grid">
+
+    <div class="process-card">
+        <h3>01 Consultation</h3>
+        <p>Understanding your event vision and expectations.</p>
+    </div>
+
+    <div class="process-card">
+        <h3>02 Menu Planning</h3>
+        <p>Custom-designed menus tailored to your requirements.</p>
+    </div>
+
+    <div class="process-card">
+        <h3>03 Event Execution</h3>
+        <p>Flawless service, presentation and guest satisfaction.</p>
+    </div>
+
+</div>
+```
+
+</section>
+
+<section class="cta">
+    <h2>Let's Create Something Memorable</h2>
+    <p>From weddings and receptions to corporate events and private celebrations, we make every occasion extraordinary.</p>
+    <a href="#" class="btn">Book Consultation</a>
+</section>
+
+<footer>
+
+<div class="footer-grid">
+
+<div>
+<h4>ST. MARY'S CATERING</h4>
+<p>Luxury catering and event services delivering unforgettable experiences since 2005.</p>
+</div>
+
+<div>
+<h4>Quick Links</h4>
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="menu.html">Menu</a>
+<a href="gallery.html">Gallery</a>
+</div>
+
+<div>
+<h4>Contact</h4>
+<p>Marangattupilly, Kottayam</p>
+<p>+91 98765 43210</p>
+<p>info@stmaryscatering.in</p>
+</div>
+
+</div>
+
+<div class="bottom">
+© 2026 St. Mary's Catering. All Rights Reserved.
+</div>
+
+</footer>
+
+</body>
+</html>

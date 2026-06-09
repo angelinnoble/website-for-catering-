@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Food Menu – St. Mary's Catering</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black-pure:  #000000;
+  --black-rich:  #111111;
+  --charcoal:    #222222;
+  --dark-gray:   #555555;
+  --muted-gray:  #888888;
+  --light-gray:  #e5e5e5;
+  --white-soft:  #fafafa;
+  --white-pure:  #ffffff;
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+/* ══ BODY + MONOCHROME TEXTURED BACKGROUND ══ */
+body {
+  font-family:'Lato',sans-serif;
+  color:var(--black-rich);
+  overflow-x:hidden;
+  background-color: var(--white-soft);
+  /* Elegant architectural dot grid background pattern */
+  background-image: 
+    radial-gradient(var(--light-gray) 1px, transparent 0),
+    radial-gradient(var(--light-gray) 1px, var(--white-soft) 0);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  background-attachment: fixed;
+}
+
+/* NAVBAR */
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:70px;
+    background:rgba(255, 255, 255, 0.95);
+    backdrop-filter:blur(10px);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 8%;
+    z-index:1000;
+    border-bottom:1px solid var(--light-gray);
+}
+
+/* LOGO */
+.logo h1{
+    font-family:'Playfair Display', serif;
+    font-size:1.6rem;
+    font-weight:700;
+    color:var(--black-pure);
+    letter-spacing:2px;
+    margin:0;
+}
+
+.logo p{
+    font-size:0.65rem;
+    letter-spacing:4px;
+    color:var(--dark-gray);
+    margin-top:2px;
+    font-weight: 700;
+}
+
+/* MENU */
+.nav-menu{
+    display:flex;
+    list-style:none;
+    gap:40px;
+    align-items: center;
+}
+
+.nav-menu a{
+    text-decoration:none;
+    color:var(--dark-gray);
+    font-size:0.8rem;
+    letter-spacing:2px;
+    font-weight:700;
+    transition:0.3s;
+}
+
+.nav-menu a:hover, .nav-menu a.active{
+    color:var(--black-pure);
+}
+
+.nav-menu li:last-child a {
+    background: var(--black-pure);
+    color: var(--white-pure);
+    padding: 8px 16px;
+    border-radius: 0px;
+    font-size: 0.75rem;
+}
+
+.nav-menu li:last-child a:hover {
+    background: var(--charcoal);
+}
+
+/* ══ HERO ══ */
+.hero{
+    margin-top:70px;
+    background: var(--black-pure);
+    padding:7rem 5vw 6rem;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    border-bottom: 4px solid var(--black-pure);
+}
+
+.hero-eyebrow{
+    font-size:.75rem;
+    letter-spacing:.3em;
+    text-transform:uppercase;
+    color:var(--muted-gray);
+    margin-bottom:1.2rem;
+    font-weight: 700;
+    animation:fadeUp .7s ease .3s both;
+}
+
+.hero h1{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2.5rem,6vw,4rem);
+    font-weight:400;
+    color:var(--white-pure);
+    line-height:1.2;
+    letter-spacing: 1px;
+    animation:fadeUp .7s ease .45s both;
+}
+
+.hero h1 em{
+    font-family: 'Playfair Display', serif;
+    font-style:italic;
+    font-weight: 600;
+}
+
+.hero-divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:2rem auto;
+    animation:fadeUp .7s ease .6s both;
+}
+
+.hero-divider::before {
+    content:'';
+    width:40px;
+    height:1px;
+    background:var(--dark-gray);
+}
+
+.hero p{
+    max-width:660px;
+    margin:0 auto;
+    color:var(--light-gray);
+    font-size:0.95rem;
+    line-height:1.8;
+    font-weight:300;
+    letter-spacing: 0.5px;
+    animation:fadeUp .7s ease .75s both;
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══ MENU SECTION ══ */
+.menu-section{padding:6rem 5vw;position:relative;z-index:1}
+.menu-section-header{text-align:center;margin-bottom:4.5rem}
+.menu-section-header h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);color:var(--black-pure);font-weight:600;letter-spacing: 1px;}
+.menu-section-header h2 em{font-style:italic; font-weight: 400;}
+.menu-section-header p{color:var(--dark-gray);margin-top:0.8rem;font-size:.9rem; text-transform: uppercase; letter-spacing: 1px;}
+
+/* ══ CARDS GRID ══ */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:3rem}
+
+/* ══ MENU CARD ══ */
+.menu-card{
+  background:var(--white-pure);
+  border: 1px solid var(--black-pure);
+  border-radius:0px;
+  overflow:hidden;
+  position:relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition:transform .4s ease, box-shadow .4s ease;
+  opacity:0;
+  transform:translateY(30px);
+  animation:cardReveal .6s ease forwards;
+}
+
+@keyframes cardReveal{to{opacity:1;transform:translateY(0)}}
+.menu-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,0.08)}
+
+.card-tier{
+  position:absolute;
+  top:1.5rem;
+  right:1.5rem;
+  font-size:.65rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--white-pure);
+  background: var(--black-pure);
+  padding:.3rem .8rem;
+  font-weight: 700;
+}
+
+.card-header{
+  padding:3rem 2rem 1.5rem;
+  border-bottom:1px solid var(--light-gray);
+  background:var(--white-pure);
+  text-align:center;
+}
+
+.card-header h3{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--black-pure);font-weight:600}
+.card-rate{margin-top:1.2rem;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted-gray); font-weight: 700;}
+.card-price{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--black-pure);font-weight:700;margin-top:.2rem}
+.card-gst{font-size:.75rem;color:var(--dark-gray);font-weight:400; font-family: 'Lato', sans-serif;}
+
+.card-body{padding:2rem;background:var(--white-pure); flex-grow: 1;}
+
+.course-label{
+  font-size:.65rem;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--black-pure);
+  margin:2rem 0 .8rem;
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+  font-weight:700;
+}
+.course-label::after{content:'';flex:1;height:1px;background:var(--light-gray)}
+
+.item-list{list-style:none}
+.item-list li{display:flex;justify-content:space-between;align-items:center;padding:.6rem 0;border-bottom:1px solid var(--white-soft);font-size:.85rem;color:var(--charcoal)}
+.item-list li:last-child{border-bottom:none}
+.item-list li span.item-name {font-weight: 400; padding-right: 15px;}
+.item-list li span.item-count{color:var(--black-pure);font-size:.8rem;font-weight:700;border: 1px solid var(--light-gray);padding:.1rem .5rem;}
+.item-list li span.item-opt{border: 1px solid var(--black-pure);color:var(--black-pure);font-size:.7rem;font-weight:700;padding:.1rem .5rem;text-transform: uppercase;letter-spacing: 0.5px;}
+.item-list li span.item-any{background: var(--black-pure); color: var(--white-pure); font-size:.7rem;font-weight:700;padding:.1rem .5rem;text-transform: uppercase;letter-spacing: 0.5px;}
+
+.card-notes{margin-top:2rem;padding:1rem;background:var(--white-soft);border-left:2px solid var(--black-pure)}
+.card-notes p{font-size:.78rem;color:var(--dark-gray);line-height:1.6}
+.card-notes p::before{content:'— ';color:var(--black-pure)}
+
+.card-cta{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:.7rem;
+  margin-top:2rem;
+  background:var(--black-pure);
+  color:var(--white-pure);
+  text-decoration:none;
+  padding:1rem;
+  font-size:.8rem;
+  font-weight:700;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  transition:background 0.3s, transform 0.2s;
+}
+.card-cta:hover{background:var(--charcoal);transform:translateY(-1px)}
+.card-cta svg{width:16px;height:16px;fill:currentColor}
+
+/* PREMIUM FEATURED CARD (GRAND) */
+.menu-card.grand {
+  grid-column:1/-1;
+  max-width:850px;
+  margin:2rem auto 0;
+  width:100%;
+  border: 3px solid var(--black-pure);
+}
+.menu-card.grand .card-header {
+  background: var(--white-soft);
+}
+.menu-card.grand .card-tier {
+  background: var(--black-pure);
+  color: var(--white-pure);
+}
+.menu-card.grand .card-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 2.5rem;
+}
+.menu-card.grand .course-label,
+.menu-card.grand .card-notes,
+.menu-card.grand .card-cta {
+  grid-column: span 2;
+}
+
+/* ══ CONDITIONS ══ */
+.conditions{
+  background:var(--white-pure);
+  border:1px solid var(--black-pure);
+  border-radius:0px;
+  padding:3.5rem;
+  margin-top:5rem;
+  position:relative;
+}
+.conditions h3{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--black-pure);margin-bottom:1.5rem;display:flex;align-items:center;gap:.8rem; font-weight: 600;}
+.conditions h3::after{content:'';flex:1;height:1px;background:var(--light-gray)}
+.conditions ul{list-style:none}
+.conditions ul li{padding:.7rem 0;font-size:.85rem;color:var(--charcoal);border-bottom:1px solid var(--white-soft);padding-left:1.5rem;position:relative}
+.conditions ul li::before{content:'—';position:absolute;left:0;color:var(--muted-gray);top:.65rem}
+.conditions ul li:last-child{border-bottom:none}
+
+/* ══ TALK TO US ══ */
+#talk_to_us{text-align:center;padding:6rem 5vw;background:var(--white-pure);border-top: 1px solid var(--light-gray); position:relative;z-index:1}
+#talk_to_us h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.6rem);color:var(--black-pure); font-weight: 400;}
+#talk_to_us h2 em{font-style:italic; font-weight: 600;}
+#talk_to_us p{color:var(--dark-gray);margin:1rem auto 2.5rem;max-width:540px;line-height:1.8;font-size:.95rem;font-weight:400}
+.wa-btn{display:inline-flex;align-items:center;gap:.8rem;background:var(--black-pure);color:var(--white-pure);text-decoration:none;padding:1.2rem 3rem;font-size:0.85rem;font-weight:700;letter-spacing:.15em;text-transform: uppercase; transition:background .3s, transform .3s;}
+.wa-btn:hover{background:var(--charcoal);transform:translateY(-3px);}
+.wa-btn svg{width:18px;height:18px;fill:var(--white-pure)}
+.wa-note{margin-top:1.2rem;font-size:.75rem;color:var(--muted-gray);display:flex;align-items:center;justify-content:center;gap:.4rem; letter-spacing: 0.5px;}
+
+/* ══ FLOATING WA ══ */
+.wa-float{position:fixed;bottom:2rem;right:2rem;z-index:200;width:55px;height:55px;border-radius:50%;background:var(--black-pure);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.15);text-decoration:none;transition:transform .3s}
+.wa-float:hover{transform:scale(1.1); background: var(--charcoal);}
+.wa-float svg{width:24px;height:24px;fill:var(--white-pure)}
+.wa-tooltip{position:absolute;right:65px;top:50%;transform:translateY(-50%);background:var(--black-pure);color:var(--white-pure);font-size:.75rem;font-weight:700;letter-spacing: 1px;padding:.4rem .8rem;border-radius:0px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s}
+.wa-tooltip::after{content:'';position:absolute;left:100%;top:50%;transform:translateY(-50%);border:5px solid transparent;border-left-color:var(--black-pure)}
+.wa-float:hover .wa-tooltip{opacity:1}
+
+/* ══ FOOTER ══ */
+footer{background:var(--black-pure);padding:4rem 5vw 2rem;text-align:center}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--white-pure);font-weight:700;letter-spacing: 1px; margin-bottom:.8rem}
+footer p{color:var(--muted-gray);font-size:.8rem;margin:.4rem 0; letter-spacing: 0.5px;}
+footer a{color:var(--light-gray);text-decoration:none}
+footer a:hover{color:var(--white-pure)}
+
+/* ══ SCROLL REVEAL ══ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+    .navbar{flex-direction:column;height:auto;padding:20px 15px;}
+    .nav-menu{margin-top:20px;gap:15px;flex-wrap:wrap;justify-content:center;}
+    .hero{margin-top:140px;}
+}
+
+@media(max-width:768px){
+  .menu-card.grand .card-body {
+    grid-template-columns: 1fr;
+  }
+  .menu-card.grand .course-label,
+  .menu-card.grand .card-notes,
+  .menu-card.grand .card-cta {
+    grid-column: span 1;
+  }
+}
+
+@media(max-width:700px){
+  .conditions{padding:2.5rem 1.5rem}
+  .card-header,.card-body{padding-left:1.5rem;padding-right:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <h1>ST. MARY'S</h1>
+        <p>CATERERS & EVENTS</p>
+    </div>
+    <nav>
+        <ul class="nav-menu">
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="about.html">ABOUT US</a></li>
+            <li><a href="menu.html" class="active">MENU</a></li>
+            <li><a href="gallery.html">GALLERY</a></li>
+            <li><a href="contact.html">CONTACT US</a></li>
+            
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+  <p class="hero-eyebrow">St. Mary's Catering &middot; Food Menu</p>
+  <h1>A Feast of <em>Flavors</em></h1>
+  <div class="hero-divider"></div>
+  <p>A great meal is more than just food — it's an experience. At St. Mary's Catering, we bring you a menu designed to suit every occasion. Whether you prefer something Standard, Classy, Elegant, Executive, or a Grand spread — your perfect feast starts here.</p>
+</section>
+
+<section class="menu-section">
+  <div class="menu-section-header reveal visible">
+    <h2>Choose Your <em>Perfect Package</em></h2>
+    <p>All menus include professional service &bull; Minimum 200 guests &bull; +5% GST applicable</p>
+  </div>
+
+  <div class="cards-grid">
+
+    <!-- STANDARD -->
+    <div class="menu-card reveal visible" style="animation-delay:.1s">
+      <div class="card-tier">Standard</div>
+      <div class="card-header">
+        <h3>Standard Menu</h3>
+        <div class="card-rate">Starting Rate</div>
+        <div class="card-price">₹400 – ₹550 <span class="card-gst">+ 5% GST</span></div>
+      </div>
+      <div class="card-body">
+        <ul class="item-list">
+          <li><span class="item-name">Welcome Drink</span><span class="item-count">4</span></li>
+          <li><span class="item-name">Salads</span><span class="item-count">4</span></li>
+        </ul>
+        <div class="course-label">First Course</div>
+        <ul class="item-list">
+          <li><span class="item-name">Breads</span><span class="item-count">2</span></li>
+          <li><span class="item-name">Non-Veg Items</span><span class="item-count">1</span></li>
+          <li><span class="item-name">Rice &amp; Curries</span><span class="item-opt">Opt</span></li>
+        </ul>
+        <div class="course-label">Main Course</div>
+        <ul class="item-list">
+          <li><span class="item-name">Rice</span><span class="item-count">1</span></li>
+          <li><span class="item-name">Veg Items</span><span class="item-count">2</span></li>
+          <li><span class="item-name">Non-Veg Items</span><span class="item-count">2</span></li>
+          <li><span class="item-name">Pickles</span><span class="item-count">3</span></li>
+          <li><span class="item-name">Desserts</span><span class="item-count">3</span></li>
+        </ul>
+        <div class="card-notes"><p>Conditions Apply</p></div>
+        <a href="https://wa.me/919337802742?text=Hi!%20I'm%20interested%20in%20the%20Standard%20Menu%20(%E2%82%B9400-550).%20Can%20you%20share%20details?" class="card-cta" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Talk To Us
+        </a>
+      </div>
+    </div>
+
+    <!-- CLASSY -->
+    <div class="menu-card reveal visible" style="animation-delay:.2s">
+      <div class="card-tier">Classy</div>
+      <div class="card-header">
+        <h3>Classy Menu</h3>
+        <div class="card-rate">Starting Rate</div>
+        <div class="card-price">₹500 – ₹650 <span class="card-gst">+ 5% GST</span></div>
+      </div>
+      <div class="card-body">
+        <ul class="item-list">
+          <li><span class="item-name">Welcome Drink</span><span class="item-count">5</span></li>
+          <li><span class="item-name">Salads</span><span class="item-count">6</span></li>
+          <li><span class="item-name">Starters (1 Non-Veg &amp; 1 Veg)</span><span class="item-count">2</span></li>
+        </ul>
+        <div class="course-label">First Course</div>
+        <ul class="item-list">
+          <li><span class="item-name">Breads</span><span class="item-count">3</span></li>
+          <li><span class="item-name">Non-Veg Items</span><span class="item-count">2</span></li>
+          <li><span class="item-name">Rice &amp; Curries</span><span class="item-opt">Opt</span></li>
+        </ul>
+        <div class="course-label">Main Course</div>
+        <ul class="item-list">
+          <li><span class="item-name">Rice &amp; Noodles</span><span class="item-count">2</span></li>
+          <li><span class="item-name">Veg Items</span><span class="item-count">2</span></li>
+          <li><span class="item-name">Non-Veg Items</span><span class="item-count">2</span></li>
+          <li><span class="item-name">Pickles</span><span class="item-count">4</span></li>
+          <li><span class="item-name">Desserts</span><span class="item-count">4</span></li>
+        </ul>
+        <div class="card-notes"><p>Live Counters Available</p><p>Conditions Apply</p></div>
+        <a href="https://wa.me/919383403865?text=Hi!%20I'm%20interested%20in%20the%20Classy%20Menu%20(%E2%82%B9500-650).%20Can%20you%20share%20details?" class="card-cta" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Talk To Us
+        </a>
+      </div>
+    </div>
+
+    <!-- ELEGANT -->
+    <div class="menu-card reveal visible" style="animation-delay:.3s">
+      <div class="card-tier">Elegant</div>
+      <div class="card-header">
+        <h3>Elegant Menu</h3>
+        <div class="card-rate">Starting Rate</div>
+        <div class="card-price">₹650 – ₹800 <span class="card-gst">+ 5% GST</span></div>
+      </div>
+      <div class="card-body">
+        <ul class="item-list">
+          <li><span class="item-name">Welcome Drink (Fresh Juice Incl.)</span><span class="item-count">6</span></li>
+          <li><span class="item-name">Salads (Fish &amp; Chicken Display)</span><span class="item-count">7</span></li>
+          <li><span class="item-name">Starters (2 Non-Veg &amp; 1 Veg)</span><span class="item-count">3</span></li>
+          <li><span class="item-name">Soups (1 Non-Veg &amp; 1 Veg)</span><span class="item-count">2</span></li>
+        </ul>
+        <div class="course-label">First Course</div>
+        <ul class="item-list">
+          <li><span class="item-name">Breads (Live for Selected)</span><span class="item-count">4</span></li>
+          <li><span class="item-name">Non-Veg Items</span><span class="item-count">2</span></li>
+          <li><span class="item-name">Rice &amp; Curries</span><span class="item-opt">Opt</span></li>
+        </ul>
+        <div class="course-label">Main Course</div>
+        <ul class="item-list">
+          <li><span class="item-name">Rice &amp; Noodles (Pulao Avail.)</span><span class="item-count">3</span></li>
+          <li><span class="item-name">Veg Items</span><span class="item-count">3</span></li>
+          <li><span class="item-name">Non-Veg Items</span><span class="item-count">3</span></li>
+          <li><span class="item-name">Pickles</span><span class="item-count">5</span></li>
+          <li><span class="item-name">Desserts (Live Desserts)</span><span class="item-count">5</span></li>
+        </ul>
+        <div class="card-notes"><p>Live Counters Available</p><p>Conditions Apply</p></div>
+        <a href="https://wa.me/919383403865?text=Hi!%20I'm%20interested%20in%20the%20Elegant%20Menu%20(%E2%82%B9650-800).%20Can%20you%20share%20details?" class="card-cta" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.94"/></svg>
+          Talk To Us
+        </a>
+      </div>
+    </div>
+
+    <!-- EXECUTIVE -->
+    <div class="menu-card reveal visible" style="animation-delay:.4s">
+      <div class="card-tier">Executive</div>
+      <div class="card-header">
+        <h3>Executive Menu</h3>
+        <div class="card-rate">Starting Rate</div>
+        <div class="card-price">₹800 – ₹1000 <span class="card-gst">+ 5% GST</span></div>
+      </div>
+      <div class="card-body">
+        <ul class="item-list">
+          <li><span class="item-name">Welcome Drink (Mocktails &amp; Juice)</span><span class="item-count">6</span></li>
+          <li><span class="item-name">Salads (Fish/Chicken/Carvings)</span><span class="item-count">8</span></li>
+          <li><span class="item-name">Starters (3 Non-Veg &amp; 1 Veg)</span><span class="item-count">4</span></li>
+          <li><span class="item-name">Soups (2 Non-Veg &amp; 1 Veg)</span><span class="item-count">3</span></li>
+        </ul>
+        <div class="course-label">First Course</div>
+        <ul class="item-list">
+          <li><span class="item-name">Breads (Live)</span><span class="item-count">4</span></li>
+          <li><span class="item-name">Non-Veg Items</span><span class="item-count">3</span></li>
+          <li><span class="item-name">Rice &amp; Curries</span><span class="item-opt">Opt</span></li>
+        </ul>
+        <div class="course-label">Main Course</div>
+        <ul class="item-list">
+          <li><span class="item-name">Rice &amp; Noodles (Live Pasta Avail.)</span><span class="item-count">4</span></li>
+          <li><span class="item-name">Veg Items</span><span class="item-count">3</span></li>
+          <li><span class="item-name">Non-Veg Items</span><span class="item-count">3</span></li>
+          <li><span class="item-name">Pickles</span><span class="item-count">6</span></li>
+          <li><span class="item-name">Desserts (Live Desserts)</span><span class="item-count">6</span></li>
+        </ul>
+        <div class="card-notes"><p>Live Counters &amp; Themes Available</p><p>Conditions Apply</p></div>
+        <a href="https://wa.me/919383403865?text=Hi!%20I'm%20interested%20in%20the%20Executive%20Menu%20(%E2%82%B9800-1000).%20Can%20you%20share%20details?" class="card-cta" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.94"/></svg>
+          Talk To Us
+        </a>
+      </div>
+    </div>
+
+    <!-- GRAND MENU -->
+    <div class="menu-card grand reveal visible">
+      <div class="card-tier">Grand Choice</div>
+      <div class="card-header">
+        <h3>Grand Menu</h3>
+        <div class="card-rate">Starting Rate</div>
+        <div class="card-price">₹1000 &amp; Above <span class="card-gst">+ 5% GST</span></div>
+      </div>
+      <div class="card-body">
+        <div>
+          <ul class="item-list">
+            <li><span class="item-name">Welcome Drink (Live Mojito, Mocktails, Juice)</span><span class="item-any">Any</span></li>
+            <li><span class="item-name">Salads (Cheese Platter, Meat, Fish Display, Carvings)</span><span class="item-any">Any</span></li>
+            <li><span class="item-name">Starters (4 Non-Veg &amp; 2 Veg)</span><span class="item-count">6</span></li>
+            <li><span class="item-name">Soups (2 Non-Veg &amp; 1 Veg)</span><span class="item-count">3</span></li>
+          </ul>
+          <div class="course-label">First Course</div>
+          <ul class="item-list">
+            <li><span class="item-name">Breads (Live)</span><span class="item-count">4</span></li>
+            <li><span class="item-name">Non-Veg Items</span><span class="item-count">3</span></li>
+            <li><span class="item-name">Rice &amp; Curries</span><span class="item-opt">Opt</span></li>
+          </ul>
+        </div>
+        <div>
+          <div class="course-label" style="margin-top:0;">Main Course</div>
+          <ul class="item-list">
+            <li><span class="item-name">Rice &amp; Noodles (Pulao, Live Pasta, Italian, Continental)</span><span class="item-count">5</span></li>
+            <li><span class="item-name">Veg Items</span><span class="item-count">3</span></li>
+            <li><span class="item-name">Non-Veg Items</span><span class="item-count">4</span></li>
+            <li><span class="item-name">Pickles (Extravagant Varieties)</span><span class="item-opt">Incl</span></li>
+            <li><span class="item-name">Desserts (Extravagant Live Display)</span><span class="item-opt">Incl</span></li>
+          </ul>
+        </div>
+        
+        <div class="card-notes"><p>Live Counters &amp; Themes Available</p></div>
+        <a href="https://wa.me/919383403865?text=Hi!%20I'm%20interested%20in%20the%20Grand%20Menu%20(%E2%82%B91000%2B).%20Can%20you%20share%20details?" class="card-cta" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.94"/></svg>
+          Talk To Us
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="conditions">
+    <h3>Booking Terms &amp; Conditions</h3>
+    <ul>
+      <li>Minimum booking count must be 200 guests to process the rates.</li>
+      <li>Prices displayed do not include tax charges (+5% GST will be applied).</li>
+      <li>Custom structural setups or live kitchen counters require verification before assignment.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="talk_to_us">
+  <h2>Let's Plan Your <em>Next Event</em></h2>
+  <p>Get in touch with our event consultants to customize a menu that perfectly aligns with your aesthetic and dining preferences.</p>
+  <a href="https://wa.me/919383403865" class="wa-btn" target="_blank">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    Connect On WhatsApp
+  </a>
+  <div class="wa-note">Response within 24 Hours</div>
+</section>
+
+<a href="https://wa.me/919383403865" class="wa-float" target="_blank">
+  <div class="wa-tooltip">WHATSAPP US</div>
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<footer>
+  <div class="footer-logo">ST. MARY'S</div>
+  <p>&copy; 2026 St. Mary's Catering &amp; Events. All Rights Reserved.</p>
+  <p><a href="#">Privacy Policy</a> &bull; <a href="#">Terms of Service</a></p>
+</footer>
+
+</body>
+</html>

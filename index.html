@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>St. Mary's Caterers and Events | Marangattupilly</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- DESIGN SYSTEM & CSS VARIABLES --- */
+        :root {
+           :root{
+    --black:#0a0a0a;
+    --dark:#111111;
+    --white:#ffffff;
+    --offwhite:#f8f8f8;
+    --light:#eeeeee;
+    --text:#222222;
+    --muted:#666666;
+    --accent:#d9d9d9;
+}
+            --font-serif: 'Cinzel', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* --- GLOBAL RESETS --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        ul {
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- REUSABLE UTILITIES --- */
+        .section-padding {
+            padding: 100px 8%;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .gold-text {
+            color: var(--gold);
+        }
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        body{
+    font-family:'Outfit',sans-serif;
+    background:#ffffff;
+    color:var(--text);
+    overflow-x:hidden;
+    position:relative;
+}
+
+
+
+        /* --- NAVIGATION BAR --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(197, 168, 128, 0.2);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .logo-area {
+            text-align: left;
+        }
+        .logo-title {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+        }
+        .logo-tagline {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            font-weight: 500;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+        }
+        .nav-item {
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 5px 0;
+            transition: var(--transition);
+        }
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+        .nav-item:hover::after {
+            width: 100%;
+        }
+        .nav-item:hover {
+            color: var(--gold);
+        }
+
+        /* --- HERO HERO CAROUSEL --- */
+        .hero {
+            margin-top: 85px;
+            height: 75vh;
+            position: relative;
+            overflow: hidden;
+            background-color: #000;
+        }
+        .hero-slider {
+            height: 100%;
+            width: 100%;
+            position: relative;
+        }
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hero-slide.active {
+            opacity: 1;
+        }
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+            z-index: 1;
+        }
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .hero-content {
+            position: absolute;
+            z-index: 2;
+            text-align: center;
+            color: var(--text-light);
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        .hero-content h1 {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            transition: var(--transition);
+        }
+        .slider-btn:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+        }
+        .slider-btn.prev { left: 30px; }
+        .slider-btn.next { right: 30px; }
+
+        /* --- PLANNING SECTION (EVENTS & MENUS) --- */
+        .planning-section {
+            background-color: var(--bg-pure);
+        }
+        .planning-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .planning-header h2 {
+            font-family: var(--font-sans);
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+        .planning-header h3 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .planning-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .planning-list-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+        .list-block-title {
+            font-family: var(--font-serif);
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            border-left: 3px solid var(--gold);
+            padding-left: 15px;
+        }
+        .inline-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+            font-size: 1.05rem;
+            color: #444;
+            font-weight: 400;
+        }
+        .inline-tags span {
+            position: relative;
+            cursor: default;
+            transition: var(--transition);
+        }
+        .inline-tags span:hover {
+            color: var(--gold);
+        }
+        .inline-tags span:not(:last-child)::after {
+            content: '|';
+            margin-left: 20px;
+            color: #ccc;
+        }
+        .planning-image img {
+            border-radius: 4px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border: 1px solid rgba(197, 168, 128, 0.3);
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+        }
+
+        /* --- COUNTER & STATS SECTION --- */
+        .stats-section {
+            background-color: #F3EFEA;
+            border-top: 1px solid rgba(197, 168, 128, 0.2);
+            border-bottom: 1px solid rgba(197, 168, 128, 0.2);
+            padding: 80px 8%;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+        .stat-card {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .stat-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        .stat-number {
+            font-family: var(--font-serif);
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        /* --- WHAT WE OFFER SLIDER --- */
+        .offer-section {
+            background-color: var(--bg-pure);
+            position: relative;
+        }
+        .slider-window {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            padding: 10px 0;
+        }
+        .offer-track {
+            display: flex;
+            gap: 25px;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform;
+        }
+        .offer-card {
+            flex: 0 0 calc((100% - (25px * 2)) / 3);
+            background: var(--bg-pure);
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            text-align: center;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        .offer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: var(--gold);
+        }
+        .offer-img-box {
+            height: 250px;
+            overflow: hidden;
+        }
+        .offer-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .offer-card:hover .offer-img-box img {
+            transform: scale(1.06);
+        }
+        .offer-card h4 {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 25px 15px;
+            font-weight: 600;
+            border-top: 1px solid rgba(0,0,0,0.03);
+        }
+        .track-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .track-btn {
+            background: none;
+            border: 1px solid var(--text-dark);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        .track-btn:hover {
+            background-color: var(--text-dark);
+            color: var(--text-light);
+        }
+
+        /* --- TESTIMONIALS (AUTO SCROLLING) --- */
+        .testimonials-section {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow: hidden;
+        }
+        .testimonials-section .section-title {
+            color: var(--text-light);
+        }
+        .marquee-wrapper {
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            position: relative;
+            padding: 20px 0;
+        }
+        .marquee-track {
+            display: flex;
+            gap: 30px;
+            width: max-content;
+            animation: scrollMarquee 25s linear infinite;
+        }
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+        .review-card {
+            background-color: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            width: 400px;
+            padding: 35px;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .stars {
+            color: var(--gold);
+            font-size: 1.1rem;
+        }
+        .review-text {
+            font-size: 0.95rem;
+            color: #BBBBBB;
+            font-style: italic;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+        .review-author {
+            font-family: var(--font-serif);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            color: var(--gold);
+            margin-top: 5px;
+        }
+        @keyframes scrollMarquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- TALK TO OUR TEAM SECTION --- */
+        .contact-section {
+            background-color: var(--bg-pure);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .contact-info-panel h3 {
+            font-family: var(--font-serif);
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        .contact-info-panel p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid rgba(0,0,0,0.1);
+            background-color: var(--bg-light);
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            transition: var(--transition);
+            border-radius: 0;
+            outline: none;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--gold);
+            background-color: var(--bg-pure);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+        .submit-btn {
+            background-color: var(--text-dark);
+            color: var(--text-light);
+            border: none;
+            padding: 18px 40px;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            align-self: flex-start;
+            transition: var(--transition);
+        }
+        .submit-btn:hover {
+            background-color: var(--gold);
+            color: var(--text-dark);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            padding: 80px 8% 40px 8%;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.8fr 0.9fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+        .footer-brand h4 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+        .footer-brand p {
+            color: #999;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            max-width: 320px;
+        }
+        .footer-heading {
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        .footer-links display, .footer-links li {
+            margin-bottom: 12px;
+        }
+        .footer-links a {
+            color: #BBBBBB;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+        .footer-contact-details {
+            color: #BBBBBB;
+            font-size: 0.95rem;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .footer-contact-details strong {
+            color: var(--text-light);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 30px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #666;
+            letter-spacing: 1px;
+        }
+
+        /* --- RESPONSIVE ADJUSTMENTS --- */
+        @media (max-width: 1024px) {
+            .planning-grid, .contact-grid { grid-template-columns: 1fr; }
+            .planning-image { display: none; }
+            .offer-card { flex: 0 0 calc((100% - 25px) / 2); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 40px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
+        @media (max-width: 768px) {
+            .nav-menu { display: none; } /* Simplified for code scale */
+            .hero-content h1 { font-size: 2.3rem; }
+            .offer-card { flex: 0 0 100%; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+            .section-padding { padding: 70px 5%; }
+        }
+        body{
+    font-family:'Outfit',sans-serif;
+    background:#ffffff;
+    color:var(--text);
+    overflow-x:hidden;
+    position:relative;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+    url("https://www.transparenttextures.com/patterns/flowers.png");
+    opacity:0.05;
+    pointer-events:none;
+    z-index:-1;
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <div class="logo-title">ST. MARY'S</div>
+                <div class="logo-tagline">Caterers & Events</div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#" class="nav-item">Home</a></li>
+                    <li><a href="about.html" class="nav-item">About Us</a></li>
+                    <li><a href="menu.html" class="nav-item">Menu</a></li>
+                    <li><a href="gallery.html" class="nav-item">Gallery</a></li>
+                    <li><a href="contact.html" class="nav-item">Contact Us</a></li>
+                   
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <button class="slider-btn prev" onclick="moveHeroSlide(-1)">&#10094;</button>
+        <button class="slider-btn next" onclick="moveHeroSlide(1)">&#10095;</button>
+        <div class="hero-slider">
+            <div class="hero-slide active">
+                <img src="https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=2070&auto=format&fit=cover" alt="Luxury Catering Setup">
+                <div class="hero-content">
+                    <h1>Catering to Perfection</h1>
+                    <p>The Complete Event Planner since 2003</p>
+                </div>
+            </div>
+            <div class="hero-slide">
+                <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?q=80&w=2070&auto=format&fit=cover" alt="Grand Wedding Event">
+                <div class="hero-content">
+                    <h1>Memorable Events, Redefined</h1>
+                    <p>Crafting Seamless Experiences and Culinary Masterpieces</p>
+                </div>
+            </div>
+            <div class="hero-slide">
+                <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2070&auto=format&fit=cover" alt="Exquisite Plating">
+                <div class="hero-content">
+                    <h1>Exquisite Flavors</h1>
+                    <p>Traditional Authenticity Meets Modern Sophistication</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="planning" class="planning-section section-padding">
+        <div class="container">
+            <div class="planning-header">
+                <h2>May We Help You?</h2>
+                <h3>What Event Are You Planning?</h3>
+            </div>
+            
+            <div class="planning-grid">
+                <div class="planning-list-wrapper">
+                    <div>
+                        <div class="list-block-title">Occasions We Elevate</div>
+                        <div class="inline-tags">
+                            <span>Engagement</span><span>Wedding</span><span>Baby Shower</span><span>Birthday</span>
+                            <span>Anniversary</span><span>Reunion</span><span>Private Party</span><span>Micro Event</span>
+                            <span>Mega Event</span><span>Corporate Meet</span><span>Annual Meet</span><span>Sports Meet</span>
+                            <span>Farewell</span><span>Get Together</span><span>Send Off</span><span>Buffet Party</span>
+                            <span>Seated Event</span><span>Exclusive Event</span><span>Community Party</span><span>Success Party</span>
+                            <span>Filmy Events</span><span>Something Different</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="list-block-title">What Menu Would You Prefer?</div>
+                        <div class="inline-tags">
+                            <span>South Indian</span><span>Kerala</span><span>Travancore</span><span>Continental</span>
+                            <span>Malabari</span><span>Chinese</span><span>Thai</span><span>Korean</span>
+                            <span>Caribbean</span><span>Mediterranean</span><span>Italian</span><span>Moroccan</span>
+                            <span>Spanish</span><span>Arabian</span><span>Vegan</span><span>Multicuisine</span>
+                            <span>Gluten free</span><span>Organic</span><span>Something Else</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="planning-image">
+                    <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?q=80&w=1954&auto=format&fit=cover" alt="Executive Chef presentation">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Since</div>
+                <div class="stat-number">2003</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Functions Hosted</div>
+                <div class="stat-number">1L+</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Happy Servings</div>
+                <div class="stat-number">5CR+</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Masterclass Recipes</div>
+                <div class="stat-number">300+</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="offers" class="offer-section section-padding">
+        <div class="container">
+            <h3 class="section-title">What We Offer</h3>
+            <div class="slider-window">
+    <div class="offer-track" id="offerTrack">
+
+        <div class="offer-card">
+            <div class="offer-img-box">
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=600&auto=format&fit=cover" alt="Appetizers">
+            </div>
+            <h4>Appetizers</h4>
+        </div>
+
+        <div class="offer-card">
+            <div class="offer-img-box">
+                <img src="https://images.unsplash.com/photo-1547592180-85f173990554?q=80&w=600&auto=format&fit=cover" alt="Soups">
+            </div>
+            <h4>Soups</h4>
+        </div>
+
+        <div class="offer-card">
+            <div class="offer-img-box">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=600&auto=format&fit=cover" alt="Main Course">
+            </div>
+            <h4>Main Course</h4>
+        </div>
+
+        <div class="offer-card">
+            <div class="offer-img-box">
+                <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=600&auto=format&fit=cover" alt="Salads">
+            </div>
+            <h4>Salads</h4>
+        </div>
+
+        <div class="offer-card">
+            <div class="offer-img-box">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=600&auto=format&fit=cover" alt="Bread & Side Dishes">
+            </div>
+            <h4>Bread & Side Dishes</h4>
+        </div>
+
+        <div class="offer-card">
+            <div class="offer-img-box">
+                <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=600&auto=format&fit=cover" alt="Desserts">
+            </div>
+            <h4>Desserts</h4>
+        </div>
+
+        <div class="offer-card">
+            <div class="offer-img-box">
+                <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?q=80&w=600&auto=format&fit=cover" alt="Beverages">
+            </div>
+            <h4>Beverages</h4>
+        </div>
+
+    </div>
+</div>
+            <div class="track-nav">
+                <button class="track-btn" onclick="slideOffers('left')">&#10094;</button>
+                <button class="track-btn" onclick="slideOffers('right')">&#10095;</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials-section section-padding">
+        <h3 class="section-title">Our Happy Clients</h3>
+        <div class="marquee-wrapper">
+            <div class="marquee-track">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"St. Mary's managed our daughter's wedding flawlessly. The traditional Kerala Sadya was authentic, and guest compliments haven't stopped."</p>
+                    <div class="review-author">- Mathew K., Pala</div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Extremely professional coordination. From corporate aesthetics to continental dishes, they balanced everything seamlessly."</p>
+                    <div class="review-author">- Sophia P., Ernakulam</div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Sensational presentation! Their live dessert stations were the absolute highlight of our reception event."</p>
+                    <div class="review-author">- Rahul J., Kottayam</div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Absolute value for money. The catering crew was polite, prompt, and highly disciplined throughout the grand buffet setup."</p>
+                    <div class="review-author">- Anjali Nair, Marangattupilly</div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"St. Mary's managed our daughter's wedding flawlessly. The traditional Kerala Sadya was authentic, and guest compliments haven't stopped."</p>
+                    <div class="review-author">- Mathew K., Pala</div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Extremely professional coordination. From corporate aesthetics to continental dishes, they balanced everything seamlessly."</p>
+                    <div class="review-author">- Sophia P., Ernakulam</div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Sensational presentation! Their live dessert stations were the absolute highlight of our reception event."</p>
+                    <div class="review-author">- Rahul J., Kottayam</div>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Absolute value for money. The catering crew was polite, prompt, and highly disciplined throughout the grand buffet setup."</p>
+                    <div class="review-author">- Anjali Nair, Marangattupilly</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section section-padding">
+        <div class="container contact-grid">
+            <div class="contact-info-panel">
+                <h3>Have Any Questions?<br><span class="gold-text">Talk To Our Team.</span></h3>
+                <p>Let's map out your dream celebration layout. Drop us a query and our culinary coordinators will reach out immediately.</p>
+            </div>
+            <div>
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you! Our event expert will connect with you shortly.');">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email Address" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" placeholder="Tell us about your scheduled event date and menu configuration preference..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Talk To Our Team</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h4>ST. MARY'S CATERERS</h4>
+                <p>The Complete Event Planner. Bringing exceptional culinary craftsmanship and event planning structure to reality since 2003.</p>
+            </div>
+            <div>
+                <div class="footer-heading">Quick Links</div>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="menu.html">Menu Configuration</a></li>
+                    <li><a href="gallery.html">Gallery Showcase</a></li>
+                    <li><a href="contact.html">Contact Coordinates</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-heading">Contact Info</div>
+                <div class="footer-contact-details">
+                    <p><strong>Location:</strong> Marangattupilly, Kottayam, Kerala, India</p>
+                    <p><strong>Hotline:</strong> +91 9447 XXXXXX / +91 4822 XXXXXX</p>
+                    <p><strong>Email:</strong> info@stmaryscaterers.com</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 St. Mary's Caterers & Events. All Rights Reserved. Designed in Modern Aesthetics.
+        </div>
+    </footer>
+
+    <script>
+        /* --- HERO SLIDER CONTROLLER --- */
+        let currentHeroSlide = 0;
+        const heroSlides = document.querySelectorAll('.hero-slide');
+        
+        function showHeroSlide(index) {
+            heroSlides[currentHeroSlide].classList.remove('active');
+            currentHeroSlide = (index + heroSlides.length) % heroSlides.length;
+            heroSlides[currentHeroSlide].classList.add('active');
+        }
+        
+        function moveHeroSlide(direction) {
+            showHeroSlide(currentHeroSlide + direction);
+        }
+        
+        // Auto transition hero slides every 5 seconds
+        setInterval(() => {
+            moveHeroSlide(1);
+        }, 5000);
+
+
+        /* --- WHAT WE OFFER CAROUSEL CONTROLLER --- */
+        const track = document.getElementById('offerTrack');
+        let currentOfferIndex = 0;
+
+        function getCardsPerView() {
+            if (window.innerWidth <= 768) return 1;
+            if (window.innerWidth <= 1024) return 2;
+            return 3;
+        }
+
+        function slideOffers(direction) {
+            const cards = document.querySelectorAll('.offer-card');
+            const totalCards = cards.length;
+            const cardsPerView = getCardsPerView();
+            const maxIndex = totalCards - cardsPerView;
+
+            if (direction === 'right') {
+                if (currentOfferIndex < maxIndex) {
+                    currentOfferIndex++;
+                } else {
+                    currentOfferIndex = 0; // Reset loop
+                }
+            } else {
+                if (currentOfferIndex > 0) {
+                    currentOfferIndex--;
+                } else {
+                    currentOfferIndex = maxIndex; // Jump to end loop
+                }
+            }
+
+            const cardWidth = cards[0].getBoundingClientRect().width;
+            const gapWidth = 25; // Matching the CSS gap property value
+            const amountToMove = currentOfferIndex * (cardWidth + gapWidth);
+            
+            track.style.transform = `translateX(-${amountToMove}px)`;
+        }
+
+        // Recalculate track window sizing dynamics correctly when layout shifts dynamically
+        window.addEventListener('resize', () => {
+            currentOfferIndex = 0;
+            track.style.transform = 'translateX(0px)';
+        });
+    </script>
+</body>
+</html>
